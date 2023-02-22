@@ -95,13 +95,13 @@ jobs:
         run: sudo apt upgrade -y
 
       - name: Installing dependencies
-        run: sudo bash ./install_requirements.sh
+        run: sudo bash ./scripts/install_deps.sh
 
       - name: Patching Magisk on WSA building script
         run: |
           echo "Yay, the upstream devs have fixed this :)"
       - name: Building Magisk on WSA
-        run: bash ./build_wsa.sh
+        run: bash ./scripts/build_wsa.sh
 
       - name: Archiving and compressing artifact
         run: |
