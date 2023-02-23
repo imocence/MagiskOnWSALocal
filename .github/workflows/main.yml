@@ -109,14 +109,14 @@ jobs:
 
       - name: Archiving and compressing artifact
         run: |
-          cd MagiskOnWSALocal/output
+          cd ./output
           tar -I "xz -T$(nproc) -9" -cvf ../MagiskOnWSA.tar.xz .
           cd ../..
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: MagiskOnWSA.tar.xz
-          path: MagiskOnWSALocal/MagiskOnWSA.tar.xz
+          path: ./MagiskOnWSA.tar.xz
 
   build-wsa-patch:
     runs-on: ubuntu-latest
