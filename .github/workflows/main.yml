@@ -53,10 +53,13 @@ on:
           - pico
 
       remove_amazon:
-        description: "Remove Amazon Store"
+        description: "Remove Amazon AppStore"
         required: true
-        default: false
-        type: boolean
+        default: "keep"
+        type: choice
+        options:
+        - keep
+        - remove
 
       root_solution:
         description: "Root solution"
@@ -98,7 +101,11 @@ jobs:
         run: |
           echo "Yay, the upstream devs have fixed this :)"
       - name: Building Magisk on WSA
-        run: bash ./scripts/build.sh --arch $WSA_BUILD_ARCHITECTURE --release-type $WSA_BUILD_RELEASE_TYPE --magisk-ver $WSA_BUILD_MAGISK_VERSION --gapps-brand $WSA_BUILD_GOOGLE_APPS_BRAND --gapps-variant $WSA_BUILD_GOOGLE_APPS_VARIANT --remove-amazon $WSA_BUILD_REMOVE_AMAZON --root-sol $WSA_BUILD_ROOT_SOLUTION 
+        run: bash ./scripts/build.sh --arch $WSA_BUILD_ARCHITECTURE --release-type $WSA_BUILD_RELEASE_TYPE --magisk-ver $WSA_BUILD_MAGISK_VERSION --gapps-brand $WSA_BUILD_GOOGLE_APPS_BRAND --gapps-variant $WSA_BUILD_GOOGLE_APPS_VARIANT --remove-amazon $WSA_BUILD_REMOVE_AMAZON --root-sol $WSA_BUILD_ROOT_SOLUTION
+	  - name: Remove Amazon AppStore
+        if: ${{ github.event.inputs.remove_amazon == 'remove' }}
+        run: |
+          find system/product/{etc/permissions,etc/sysconfig,framework,priv-app} | grep -e amazon -e venezia | sudo xargs rm -rf
 
       - name: Archiving and compressing artifact
         run: |
