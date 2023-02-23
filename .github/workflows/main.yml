@@ -11,7 +11,7 @@ on:
         options:
           - x64
           - arm64
-
+          - x64 & arm64
       release_type:
         description: "WSA release type"
         required: true
