@@ -89,34 +89,9 @@ on:
         - 7z
         - xz
         - zip
-      # remove-amazon:
-      #   description: Remove Amazon Appstore from the system
-      #   required: true
-      #   default: true
-      #   type: boolean
-      # magisk-custom:
-      #   description: Install custom Magisk
-      #   required: true
-      #   default: true
-      #   type: boolean
-      # debug:
-      #   description: Debug build mode
-      #   required: true
-      #   default: true
-      #   type: boolean
-      # nofix-props:
-      #   description: No fix "build.prop"
-      #   required: true
-      #   default: true
-      #   type: boolean
-
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -154,7 +129,6 @@ jobs:
       with:
         name: MagiskOnWSA
         path: output/*
-
     - name: Get current time
       uses: srfrnk/current-time@master
       id: current-time
