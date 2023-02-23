@@ -118,40 +118,8 @@ jobs:
           name: MagiskOnWSA.tar.xz
           path: ./MagiskOnWSA.tar.xz
 
-  build-wsa-patch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checks-out repository
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-
-      - name: Updating package manager cache
-        run: sudo apt update -y && sudo apt upgrade -y
-
-      - name: Installing dependencies
-        run: sudo apt install p7zip
-
-      - name: Downloading and extracing WSAPatch release files
-        run: |
-          cd WSAPatch
-          bash download.sh file_list.csv
-          7z e release.7z
-          cd ..
-      - name: Archiving and compressing artifact
-        run: |
-          cd WSAPatch
-          tar -I "xz -T$(nproc) -9" -cvf ../WSAPatch.tar.xz *.dll
-          cd ..
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: WSAPatch.tar.xz
-          path: WSAPatch.tar.xz
-
   build-magisk-on-wsa-10:
     needs:
-      - build-wsa-patch
       - build-magisk-on-wsa
     runs-on: ubuntu-latest
     steps:
