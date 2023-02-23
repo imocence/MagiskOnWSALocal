@@ -101,7 +101,7 @@ jobs:
         run: |
           echo "Yay, the upstream devs have fixed this :)"
       - name: Building Magisk on WSA
-        run: bash ./scripts/build_wsa.sh
+        run: bash ./scripts/build.sh
 
       - name: Archiving and compressing artifact
         run: |
