@@ -109,10 +109,10 @@ jobs:
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
     steps:
       - name: Install dependencies  
-        run: ./scripts/install_deps.sh
+        run: sudo bash ./scripts/install_deps.sh
         
       - name: Building Magisk on WSA
-        run: ./scripts/build.sh
+        run: sudo bash ./scripts/build.sh
         
       - name: Patch WSA
         run: |
