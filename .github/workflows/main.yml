@@ -98,9 +98,7 @@ jobs:
         run: |
           echo "Yay, the upstream devs have fixed this :)"
       - name: Building Magisk on WSA
-        run: |
-        	bash ./scripts/build.sh --arch $WSA_BUILD_ARCHITECTURE --release-type $WSA_BUILD_RELEASE_TYPE --magisk-ver $WSA_BUILD_MAGISK_VERSION --gapps-brand $WSA_BUILD_GOOGLE_APPS_BRAND --gapps-variant $WSA_BUILD_GOOGLE_APPS_VARIANT --remove-amazon $WSA_BUILD_REMOVE_AMAZON --root-sol $WSA_BUILD_ROOT_SOLUTION
-        	cd ../..
+        run: bash ./scripts/build.sh --arch $WSA_BUILD_ARCHITECTURE --release-type $WSA_BUILD_RELEASE_TYPE --magisk-ver $WSA_BUILD_MAGISK_VERSION --gapps-brand $WSA_BUILD_GOOGLE_APPS_BRAND --gapps-variant $WSA_BUILD_GOOGLE_APPS_VARIANT --remove-amazon $WSA_BUILD_REMOVE_AMAZON --root-sol $WSA_BUILD_ROOT_SOLUTION 
 
       - name: Archiving and compressing artifact
         run: |
